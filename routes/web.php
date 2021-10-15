@@ -13,9 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
+
+Route::get('users/{name}', function ($name) {
+    return "Test for developer: $name";
+});
+Route::get('/blog', function () {
+    return "blog";
+});
+
+Route::redirect('/hello', '/welcome');
+Route::redirect('/', '/welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
