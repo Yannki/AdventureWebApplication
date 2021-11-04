@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Adventurer extends Model
+class Tavern extends Model
 {
     use HasFactory;
 
-    public function tavern(){
-        return $this->hasOne(Tavern::class);
+    public function adventurer(){
+        return $this->belongsTo(Adventurer::class);
     }
 }
