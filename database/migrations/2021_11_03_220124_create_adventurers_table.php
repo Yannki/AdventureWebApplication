@@ -18,7 +18,7 @@ class CreateAdventurersTable extends Migration
             $table->string('name');
             $table->integer('age');
             $table->string('rank');
-            $table->string('origin')->nullable();
+            $table->string('origin')->nullable()->default('unknown');
             $table->timestamps();
 
             $table->bigInteger('tavern_id')->unsigned();

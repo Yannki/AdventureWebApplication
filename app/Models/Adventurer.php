@@ -16,4 +16,8 @@ class Adventurer extends Model
     public function commissions(){
         return $this->hasMany(Commission::class);
     }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 }

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Commission extends Model
+class Comment extends Model
 {
     use HasFactory;
 
@@ -13,7 +13,7 @@ class Commission extends Model
         return $this->belongsTo(Adventurer::class);
     }
 
-    public function comments(){
-        return $this->hasMany(Comment::class);
+    public function commission(){
+        return $this->belongsTo(Commission::class);
     }
 }
