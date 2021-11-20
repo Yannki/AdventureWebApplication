@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdventurerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/welcome', function () {
-    return view('welcome');
+Route::get('/', function () {
+    return view('adventurer');
 });
+
+Route::get('/adventurers', [AdventurerController::class, 'index']);
 
 Route::get('users/{name}', function ($name) {
     return "Test for developer: $name";
@@ -25,7 +28,7 @@ Route::get('/blog', function () {
 });
 
 Route::redirect('/hello', '/welcome');
-Route::redirect('/', '/welcome');
+// Route::redirect('/', '/welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
