@@ -16,8 +16,8 @@ class CreateTavernsTable extends Migration
         Schema::create('taverns', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('country');
-            $table->boolean('active');
+            $table->string('country')->nullable();
+            $table->boolean('active')->default(TRUE);
             $table->timestamps();
         });
     }

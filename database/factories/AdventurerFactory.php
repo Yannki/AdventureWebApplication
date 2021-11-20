@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Adventurer;
+use App\Models\Tavern;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AdventurerFactory extends Factory
@@ -21,13 +22,14 @@ class AdventurerFactory extends Factory
      */
     public function definition()
     {
+        $taverns = Tavern::pluck('id');
         return [
             //
             'name'=> $this->faker->firstName(),
             'age' => $this->faker->numberBetween(18,99),
             'rank'=> $this->faker->randomElement(['beginner','intermediate','expert']),
             'origin'=>$this->faker->state(),
-            'tavern_id'=>$this->faker->numberBetween(1,20),
+            'tavern_id'=>$this->faker->randomElement($taverns),
         ];
     }
 }

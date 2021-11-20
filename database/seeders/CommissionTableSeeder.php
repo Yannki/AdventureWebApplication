@@ -15,12 +15,6 @@ class CommissionTableSeeder extends Seeder
     public function run()
     {
         //
-        $c = new Commission;
-        $c->name = "Hope in the Woods";
-        $c->difficulty = "easy";
-        $c->reward = 100;
-        $c->save();
-
         $commissions = Commission::factory()->count(10)->create();
     }
 }

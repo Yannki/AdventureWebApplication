@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Commission;
+use App\Models\Adventurer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CommissionFactory extends Factory
@@ -21,11 +22,13 @@ class CommissionFactory extends Factory
      */
     public function definition()
     {
+        $adventurers = Adventurer::pluck('id');
         return [
             //
             'name' => $this->faker->realText(50,1),
             'difficulty' => $this->faker->randomElement(['easy','medium','hard','expert']),
             'reward' => $this->faker->randomNumber(7),
+            'adventurer_id'=>$this->faker->randomElement($adventurers),
         ];
     }
 }

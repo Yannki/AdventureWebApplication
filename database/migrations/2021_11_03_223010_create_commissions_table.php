@@ -19,6 +19,11 @@ class CreateCommissionsTable extends Migration
             $table->string('difficulty');
             $table->integer('reward');
             $table->timestamps();
+
+            $table->bigInteger('adventurer_id')->unsigned();
+
+            $table->foreign('adventurer_id')->references('id')->
+                on('adventurers')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

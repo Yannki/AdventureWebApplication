@@ -12,4 +12,8 @@ class Adventurer extends Model
     public function tavern(){
         return $this->belongsTo(Tavern::class);
     }
+
+    public function commissions(){
+        return $this->hasMany(Commission::class);
+    }
 }
