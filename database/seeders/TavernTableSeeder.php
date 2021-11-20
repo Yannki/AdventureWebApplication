@@ -15,11 +15,6 @@ class TavernTableSeeder extends Seeder
     public function run()
     {
         //
-        $t = new Tavern;
-        $t->name = "Gohan";
-        $t->country = "Japan";
-        $t->active = True;
-        $t->adventurer_id = 1;
-        $t->save();
+        $taverns = Tavern::factory()->count(20)->create();
     }
 }

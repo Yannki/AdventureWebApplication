@@ -18,11 +18,7 @@ class CreateTavernsTable extends Migration
             $table->string('name');
             $table->string('country');
             $table->boolean('active');
-            $table->bigInteger('adventurer_id')->unsigned();
             $table->timestamps();
-
-            $table->foreign('adventurer_id')->references('id')->
-                on('adventurers')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

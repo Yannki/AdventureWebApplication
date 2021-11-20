@@ -15,12 +15,6 @@ class AdventurerTableSeeder extends Seeder
     public function run()
     {
         //
-        $a = new Adventurer;
-        $a->name = "James";
-        $a->age = 25;
-        $a->rank = "Beginer";
-        $a->save();
-
-        $adventurers = Adventurer::factory()->count(10)->create();
+        $adventurers = Adventurer::factory()->count(100)->create();
     }
 }

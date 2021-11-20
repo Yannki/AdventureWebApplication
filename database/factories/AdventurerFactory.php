@@ -27,6 +27,7 @@ class AdventurerFactory extends Factory
             'age' => $this->faker->numberBetween(18,99),
             'rank'=> $this->faker->randomElement(['beginner','intermediate','expert']),
             'origin'=>$this->faker->state(),
+            'tavern_id'=>$this->faker->numberBetween(1,20),
         ];
     }
 }

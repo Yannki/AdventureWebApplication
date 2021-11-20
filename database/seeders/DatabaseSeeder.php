@@ -14,8 +14,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Modefls\User::factory(10)->create();
-        $this->call(AdventurerTableSeeder::class); 
-        $this->call(CommissionTableSeeder::class); 
         $this->call(TavernTableSeeder::class);
+        $this->call(AdventurerTableSeeder::class); 
+       
+        
     }
 }

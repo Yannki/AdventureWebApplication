@@ -20,6 +20,11 @@ class CreateAdventurersTable extends Migration
             $table->string('rank');
             $table->string('origin')->nullable();
             $table->timestamps();
+
+            $table->bigInteger('tavern_id')->unsigned();
+
+            $table->foreign('tavern_id')->references('id')->
+                on('taverns')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
