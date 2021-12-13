@@ -22,7 +22,6 @@ Route::get('/', function () {
 Route::get('/adventurers', [AdventurerController::class, 'index']);
 Route::get('/adventurers/{id}', [AdventurerController::class, 'show']);
 
-Route::get('/taverns', [TavernController::class, 'index']);
 Route::get('/taverns/{id}', [TavernController::class, 'show']);
 
 Route::get('users/{name}', function ($name) {
@@ -37,6 +36,8 @@ Route::group(['middleware'=>'auth'], function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/taverns', [TavernController::class, 'index'])->name('taverns');
 });
 
 
