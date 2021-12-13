@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdventurerController;
+use App\Http\Controllers\TavernController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,17 +16,21 @@ use App\Http\Controllers\AdventurerController;
 */
 
 Route::get('/', function () {
-    return view('welcome')->name('welcome');
+    return view('welcome');
 });
 
 Route::get('/adventurers', [AdventurerController::class, 'index']);
+Route::get('/adventurers/{id}', [AdventurerController::class, 'show']);
+
+Route::get('/taverns', [TavernController::class, 'index']);
+Route::get('/taverns/{id}', [TavernController::class, 'show']);
 
 Route::get('users/{name}', function ($name) {
     return "Test for developer: $name";
 });
 
 Route::group(['middleware'=>'auth'], function () {
-    Route::get('/', function () {
+    Route::get('/home', function () {
         return view('welcome');
     })->name('welcome');
 

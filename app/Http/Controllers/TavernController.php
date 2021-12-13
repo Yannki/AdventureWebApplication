@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Adventurer;
+use App\Models\Tavern;
 
-class AdventurerController extends Controller
+class TavernController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class AdventurerController extends Controller
      */
     public function index()
     {
-        $adventurers = Adventurer::all();
-        return view('adventurers.index', ['adventurers' => $adventurers]);
+        $taverns = Tavern::all();
+        return view('taverns.index', ['taverns' => $taverns]);
     }
 
     /**
@@ -47,8 +47,8 @@ class AdventurerController extends Controller
      */
     public function show($id)
     {
-        $adventurer = Adventurer::findOrFail($id);
-        return view('adventurers.show', ['adventurer' => $adventurer]);
+        $tavern = Tavern::findOrFail($id);
+        return view('taverns.show', ['tavern' => $tavern]);
     }
 
     /**

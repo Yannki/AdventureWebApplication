@@ -13,6 +13,10 @@ class Commission extends Model
         return $this->belongsTo(Adventurer::class);
     }
 
+    public function taverns(){
+        return $this->belongsToMany(Tavern::class);
+    }
+    
     public function comments(){
         return $this->hasMany(Comment::class);
     }
