@@ -15,7 +15,7 @@ use App\Http\Controllers\AdventurerController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')->name('welcome');
 });
 
 Route::get('/adventurers', [AdventurerController::class, 'index']);
@@ -24,11 +24,15 @@ Route::get('users/{name}', function ($name) {
     return "Test for developer: $name";
 });
 
-Route::redirect('/hello', '/welcome');
-// Route::redirect('/', '/welcome');
+Route::group(['middleware'=>'auth'], function () {
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('welcome');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+
 
 require __DIR__.'/auth.php';
