@@ -15,16 +15,13 @@ use App\Http\Controllers\AdventurerController;
 */
 
 Route::get('/', function () {
-    return view('adventurer');
+    return view('welcome');
 });
 
 Route::get('/adventurers', [AdventurerController::class, 'index']);
 
 Route::get('users/{name}', function ($name) {
     return "Test for developer: $name";
-});
-Route::get('/blog', function () {
-    return "blog";
 });
 
 Route::redirect('/hello', '/welcome');

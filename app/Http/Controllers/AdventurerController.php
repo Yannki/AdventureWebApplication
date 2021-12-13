@@ -47,7 +47,8 @@ class AdventurerController extends Controller
      */
     public function show($id)
     {
-        //
+        $adventurer = Adventurer::findOrFail($id);
+        return view('adventurers.show', ['adventurers' => $adventurers]);
     }
 
     /**
