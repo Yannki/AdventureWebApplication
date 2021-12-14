@@ -100,7 +100,7 @@ class TavernController extends Controller
      */
     public function destroy($id)
     {
-        $tavern = Tavern::find($id)->first();
+        $tavern = Tavern::find($id);
 
         $tavern->delete();
         

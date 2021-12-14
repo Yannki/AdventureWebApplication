@@ -38,6 +38,7 @@ Route::group(['middleware'=>'auth'], function () {
     Route::post('/taverns', [TavernController::class, 'store']);
     Route::get('/taverns/{id}/edit', [TavernController::class, 'edit']);
     Route::put('/taverns/{id}', [TavernController::class, 'update']);
+    Route::delete('/taverns/{id}', [TavernController::class, 'destroy']);
 
     
     Route::get('/adventurers', [AdventurerController::class, 'index'])->name('adventurers');
