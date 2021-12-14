@@ -19,11 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/adventurers', [AdventurerController::class, 'index']);
-Route::get('/adventurers/{id}', [AdventurerController::class, 'show']);
-
-Route::get('/taverns/{id}', [TavernController::class, 'show']);
-
 Route::get('users/{name}', function ($name) {
     return "Test for developer: $name";
 });
@@ -38,6 +33,12 @@ Route::group(['middleware'=>'auth'], function () {
     })->name('dashboard');
 
     Route::get('/taverns', [TavernController::class, 'index'])->name('taverns');
+    Route::post('/taverns', [TavernController::class, 'store']);
+    Route::get('/taverns/create', [TavernController::class, 'create']);
+    Route::get('/taverns/{id}', [TavernController::class, 'show']);
+    
+    Route::get('/adventurers', [AdventurerController::class, 'index'])->name('adventurers');
+    Route::get('/adventurers/{id}', [AdventurerController::class, 'show']);
 });
 
 

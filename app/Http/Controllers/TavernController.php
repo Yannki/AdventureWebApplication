@@ -25,7 +25,7 @@ class TavernController extends Controller
      */
     public function create()
     {
-        //
+        return view('taverns.create');
     }
 
     /**
@@ -36,7 +36,17 @@ class TavernController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required',
+            'country'=> 'nullable',
+        ]);
+
+        $tavern = Tavern::create([
+            'name' => $request->input('name'),
+            'country' => $request->input('country')
+        ]);
+
+        return redirect('/taverns');
     }
 
     /**

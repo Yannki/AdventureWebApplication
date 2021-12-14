@@ -16,4 +16,9 @@ class Tavern extends Model
     public function commisions(){
         return $this->belongsToMany(Commision::class);
     }
+
+    protected $fillable = [
+        'name',
+        'country',
+    ]; 
 }
