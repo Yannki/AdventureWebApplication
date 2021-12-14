@@ -69,7 +69,9 @@ class TavernController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tavern = Tavern::find($id);
+
+        return view('taverns.edit', ['tavern' => $tavern]);
     }
 
     /**
@@ -81,7 +83,13 @@ class TavernController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tavern = Tavern::where('id', $id)->
+        update([
+            'name' => $request->input('name'),
+            'country' => $request->input('country'),
+        ]);
+
+        return redirect('/taverns');
     }
 
     /**
@@ -92,6 +100,10 @@ class TavernController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tavern = Tavern::find($id)->first();
+
+        $tavern->delete();
+        
+        return redirect('/taverns');
     }
 }

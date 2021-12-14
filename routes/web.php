@@ -33,9 +33,12 @@ Route::group(['middleware'=>'auth'], function () {
     })->name('dashboard');
 
     Route::get('/taverns', [TavernController::class, 'index'])->name('taverns');
-    Route::post('/taverns', [TavernController::class, 'store']);
     Route::get('/taverns/create', [TavernController::class, 'create']);
     Route::get('/taverns/{id}', [TavernController::class, 'show']);
+    Route::post('/taverns', [TavernController::class, 'store']);
+    Route::get('/taverns/{id}/edit', [TavernController::class, 'edit']);
+    Route::put('/taverns/{id}', [TavernController::class, 'update']);
+
     
     Route::get('/adventurers', [AdventurerController::class, 'index'])->name('adventurers');
     Route::get('/adventurers/{id}', [AdventurerController::class, 'show']);
