@@ -8,17 +8,20 @@
 
                     <form method="POST" action="/taverns">
                         @csrf
-                        <!-- Email Address -->
                         <div>
                             Tavern Name:<br>
                             <input type="text" name="name"
                                 class="rounded-md shadow-sm border-green-300 focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50">
                         </div>
 
-                        <!-- Password -->
                         <div class="mt-4">
                             Country:<br>
                             <input type="text" name="country"
+                                class="rounded-md shadow-sm border-green-300 focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50">
+                        </div>
+
+                        <div class="mt-4">
+                            <input type="file" name="image"
                                 class="rounded-md shadow-sm border-green-300 focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50">
                         </div>
 

@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CommissionTableSeeder::class);
         $this->call(CommentTableSeeder::class);
         $this->call(CommissionTavernTableSeeder::class);
+        $this->call(ImageTableSeeder::class);
        
         
     }

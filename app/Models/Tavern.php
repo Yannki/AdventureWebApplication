@@ -17,6 +17,11 @@ class Tavern extends Model
         return $this->belongsToMany(Commission::class);
     }
 
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
     protected $fillable = [
         'name',
         'country',

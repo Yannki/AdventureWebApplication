@@ -24,4 +24,9 @@ class Adventurer extends Model
     public function comments(){
         return $this->hasMany(Comment::class);
     }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }
