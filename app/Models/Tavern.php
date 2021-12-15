@@ -13,8 +13,8 @@ class Tavern extends Model
         return $this->hasMany(Adventurer::class);
     }
 
-    public function commisions(){
-        return $this->belongsToMany(Commision::class);
+    public function commissions(){
+        return $this->belongsToMany(Commission::class);
     }
 
     protected $fillable = [
