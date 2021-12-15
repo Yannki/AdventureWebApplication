@@ -38,7 +38,7 @@ class TavernController extends Controller
     {
         $validateData = $request->validate([
             'name' => 'required',
-            'country'=> 'nullable',
+            'country'=> 'nullable|string|max:45',
         ]);
 
         $tavern = Tavern::create([
@@ -83,6 +83,11 @@ class TavernController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validateData = $request->validate([
+            'name' => 'required',
+            'country'=> 'nullable|min:2|max:45',
+        ]);
+
         $tavern = Tavern::where('id', $id)->
         update([
             'name' => $request->input('name'),

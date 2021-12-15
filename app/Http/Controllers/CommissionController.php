@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Commission;
 
 class CommissionController extends Controller
 {
@@ -13,7 +14,8 @@ class CommissionController extends Controller
      */
     public function index()
     {
-        //
+        $commissions = Commission::all();
+        return view('commissions.index', ['commissions' => $commissions]);
     }
 
     /**
@@ -23,7 +25,7 @@ class CommissionController extends Controller
      */
     public function create()
     {
-        //
+        return view('commissions.create');
     }
 
     /**
@@ -34,7 +36,21 @@ class CommissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required',
+            'difficulty'=> 'required',
+            'reward'=> 'required|numeric|max:45',
+            'adventure_id'=> 'required',
+        ]);
+
+        $tavern = Commission::create([
+            'name' => $request->input('name'),,
+            'difficulty'=> $request->input('difficulty'),,
+            'reward'=> $request->input('reward'),,
+            'adventure_id'=> $request->input('adventure_id'),,
+        ]);
+
+        return redirect('/commissions');
     }
 
     /**
@@ -79,6 +95,10 @@ class CommissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $c = Commission::find($id);
+
+        $c->delete();
+        
+        return redirect('/commissions');
     }
 }

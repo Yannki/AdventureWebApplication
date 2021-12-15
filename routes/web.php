@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdventurerController;
 use App\Http\Controllers\TavernController;
+use App\Http\Controllers\CommissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,8 @@ Route::group(['middleware'=>'auth'], function () {
     Route::put('/taverns/{id}', [TavernController::class, 'update']);
     Route::delete('/taverns/{id}', [TavernController::class, 'destroy']);
 
-    
+    Route::get('/commissions', [CommissionController::class, 'index'])->name('commissions');
+
     Route::get('/adventurers', [AdventurerController::class, 'index'])->name('adventurers');
     Route::get('/adventurers/{id}', [AdventurerController::class, 'show']);
 });
