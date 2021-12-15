@@ -33,6 +33,7 @@
                 </div>
                 @endforeach
             </ul> 
+            {{$taverns->links()}}
         </div>
     </div>
 </x-app-layout>

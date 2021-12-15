@@ -14,10 +14,14 @@
                             <br>{{$commission->reward}}
                             </a>
                         </li>
+                        <div class="text-xs underline text-opacity-5">
+                        Posted by {{$commission->adventurer->name}}
+                        </div>
                     </div>
                 </div>
                 @endforeach
             </ul> 
         </div>
+        {{$commissions->links()}}
     </div>
 </x-app-layout>

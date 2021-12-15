@@ -14,7 +14,7 @@ class TavernController extends Controller
      */
     public function index()
     {
-        $taverns = Tavern::all();
+        $taverns = Tavern::paginate(6);
         return view('taverns.index', ['taverns' => $taverns]);
     }
 
@@ -109,6 +109,6 @@ class TavernController extends Controller
 
         $tavern->delete();
         
-        return redirect('/taverns');
+        return redirect()->back();
     }
 }

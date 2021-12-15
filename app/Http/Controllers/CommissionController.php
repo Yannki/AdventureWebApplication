@@ -14,7 +14,7 @@ class CommissionController extends Controller
      */
     public function index()
     {
-        $commissions = Commission::all();
+        $commissions = Commission::paginate(5);
         return view('commissions.index', ['commissions' => $commissions]);
     }
 
@@ -44,10 +44,10 @@ class CommissionController extends Controller
         ]);
 
         $tavern = Commission::create([
-            'name' => $request->input('name'),,
-            'difficulty'=> $request->input('difficulty'),,
-            'reward'=> $request->input('reward'),,
-            'adventure_id'=> $request->input('adventure_id'),,
+            'name' => $request->input('name'),
+            'difficulty'=> $request->input('difficulty'),
+            'reward'=> $request->input('reward'),
+            'adventure_id'=> $request->input('adventure_id'),
         ]);
 
         return redirect('/commissions');
