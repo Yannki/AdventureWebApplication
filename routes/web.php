@@ -42,6 +42,10 @@ Route::group(['middleware'=>'auth'], function () {
     Route::delete('/taverns/{id}', [TavernController::class, 'destroy']);
 
     Route::get('/commissions', [CommissionController::class, 'index'])->name('commissions');
+    Route::get('/commissions/create', [CommissionController::class, 'create']);
+    Route::get('/commissions/{id}', [CommissionController::class, 'show']);
+    Route::post('/commissions', [CommissionController::class, 'store']);
+    
 
     Route::get('/adventurers', [AdventurerController::class, 'index'])->name('adventurers');
     Route::get('/adventurers/{id}', [AdventurerController::class, 'show']);

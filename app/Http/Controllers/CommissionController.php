@@ -14,7 +14,7 @@ class CommissionController extends Controller
      */
     public function index()
     {
-        $commissions = Commission::paginate(5);
+        $commissions = Commission::paginate(3);
         return view('commissions.index', ['commissions' => $commissions]);
     }
 
@@ -61,7 +61,8 @@ class CommissionController extends Controller
      */
     public function show($id)
     {
-        //
+        $commission = Commission::findOrFail($id);
+        return view('commissions.show', ['commission' => $commission]);
     }
 
     /**
