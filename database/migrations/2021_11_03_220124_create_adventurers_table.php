@@ -22,9 +22,13 @@ class CreateAdventurersTable extends Migration
             $table->timestamps();
 
             $table->bigInteger('tavern_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();
 
             $table->foreign('tavern_id')->references('id')->
                 on('taverns')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->foreign('user_id')->references('id')->
+                on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

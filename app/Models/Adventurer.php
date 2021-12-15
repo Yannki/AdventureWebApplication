@@ -9,6 +9,10 @@ class Adventurer extends Model
 {
     use HasFactory;
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
     public function tavern(){
         return $this->belongsTo(Tavern::class);
     }
