@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Image;
 use App\Models\Tavern;
-use App\Models\Commssion;
+use App\Models\Commission;
 use App\Models\Adventurer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -25,20 +25,23 @@ class ImageFactory extends Factory
     public function definition()
     { 
         $noteableType = $this->faker->randomElement([
-            App\Tavern::class,
-            App\Commission::class,
-            App\Adventurer::class,
+            'App\Tavern',
+            'App\Commission',
+            'App\Adventurer',
         ]);
 
-        if ($noteableType === Tavern::class) {
+        if ($noteableType === 'App\Tavern') {
             $noteableId = Tavern::all()->random()->id;
-        } else if ($noteableType === Commission::class) {
+            $image = $this->faker->image('public/images',400,300, 'logo',true, true, 'Faker');
+        } else if ($noteableType === 'App\Commission') {
             $noteableId = Commission::all()->random()->id;
+            $image = $this->faker->image('public/images',400,300, 'monster',true, true, 'Faker');
         } else {
             $noteableId = Adventurer::all()->random()->id;
+            $image = $this->faker->image('public/images',400,300, 'profile',true, true, 'Faker');
         }
 
-        $image = $this->faker->image('public/images',400,300, null, false);
+        
         return [
             'image_path' =>$image,
             'imageable_id' => $noteableId,
