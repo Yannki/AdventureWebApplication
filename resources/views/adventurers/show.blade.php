@@ -8,7 +8,7 @@
                     <li>Age: {{$adventurer->age}}</li>
                     <li>Rank: {{$adventurer->rank}}</li>
                     <li>Origin: {{$adventurer->origin}}</li>
-                    <li>Tavern</li>
+                    <li>Tavern: {{$adventurer->tavern->name}}</li>
                     </ul>
                 </div>
             </div>
