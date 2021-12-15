@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AdventurerTableSeeder::class); 
         $this->call(CommissionTableSeeder::class);
         $this->call(CommentTableSeeder::class);
+        $this->call(CommissionTavernTableSeeder::class);
        
         
     }
