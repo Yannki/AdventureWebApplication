@@ -54,7 +54,7 @@
                                    hover:text-underline text-right h-10 p-2 md:h-auto md:p-4">
                                             <br>Commission Name: {{ $commission->name }}
                                             <br>Difficulty: {{ $commission->difficulty }}
-                                            <br>Reward: {{ $commission->reward }}
+                                            <br>Reward: {{ $commission->reward }} coins
                                         </a>
                                     </li>
                                 </div>
