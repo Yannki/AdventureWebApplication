@@ -40,7 +40,7 @@ class CommissionController extends Controller
         $validateData = $request->validate([
             'name' => 'required',
             'difficulty'=> 'required',
-            'reward'=> 'required|numeric|max:45',
+            'reward'=> 'required|numeric|max:50000',
             'adventurer_id'=> 'required',
             'image'=>'required|mimes:jpg,png,jpeg|max:5048'
         ]);
@@ -102,7 +102,7 @@ class CommissionController extends Controller
         $validateData = $request->validate([
             'name' => 'required',
             'difficulty'=> 'required',
-            'reward'=> 'required|numeric|max:45',
+            'reward'=> 'required|numeric|max:50000',
             'adventurer_id'=> 'required',
             'image'=>'required|mimes:jpg,png,jpeg|max:5048'
         ]);
