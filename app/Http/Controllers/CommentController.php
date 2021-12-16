@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Commission;
 
 class CommentController extends Controller
 {
@@ -11,9 +12,18 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-       
+       $commission = Commission::find($id);
+       $comments = $commission->comments;
+       return view('comments.index', ['comments' => $comments, 'commission'=>$commission]);
+    }
+
+    public function apiIndex($id)
+    {
+       $commission = Commission::find($id);
+       $comments = $commission->comments;
+       return response()->json($comments);
     }
 
     /**

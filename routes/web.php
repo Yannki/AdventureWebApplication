@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdventurerController;
 use App\Http\Controllers\TavernController;
 use App\Http\Controllers\CommissionController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,8 @@ Route::group(['middleware'=>'auth'], function () {
     Route::get('/commissions/{id}/edit', [CommissionController::class, 'edit']);
     Route::put('/commissions/{id}', [CommissionController::class, 'update']);
     Route::delete('/commissions/{id}', [CommissionController::class, 'destroy']);
+
+    Route::get('/commissions/{id}/comments', [CommentController::class, 'index']);
     
     Route::get('/adventurers', [AdventurerController::class, 'index'])->name('adventurers');
     Route::get('/adventurers/{id}', [AdventurerController::class, 'show']);

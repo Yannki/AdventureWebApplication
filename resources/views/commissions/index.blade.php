@@ -9,10 +9,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <ul>
                 @foreach ($commissions as $commission)
-                <div
-                    class="'inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-green-900 focus:outline-none focus:border-green-900 focus:ring ring-green-300 disabled:opacity-25 transition ease-in-out duration-150'">
-                    Commission: {{ $commission->name }}
-                </div>
+                    <div
+                        class="'inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-green-900 focus:outline-none focus:border-green-900 focus:ring ring-green-300 disabled:opacity-25 transition ease-in-out duration-150'">
+                        Commission: {{ $commission->name }}
+                    </div>
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 bg-white border-b border-green-200 hover:bg-green-50">
                             <li>
@@ -54,6 +54,12 @@
                                 Posted by adventurer {{ $commission->adventurer->name }}
                             </div>
 
+                            <a href="/commissions/{{ $commission->id }}/comments"
+                                    class="hover:text-indigo-800 
+                                    hover:text-underline text-center">
+                                    Comments: {{$commission->comments->count()}}
+                            </a>
+
                         </div>
                     </div>
                 @endforeach
@@ -61,23 +67,5 @@
             {{ $commissions->links() }}
         </div>
     </div>
-
-    {{-- <script>
-        var app = new Vue({
-            el: "#root",
-            data: {
-                enclosures: [],
-            },
-            mounted() {
-                axios.get("{{ route('api.enclosures.index') }}")
-                    .then(response => {
-                        this.enclosures = response.data;
-                    })
-                    .catch(response => {
-                        console.log(response);
-                })
-            }
-        });
-    </script> --}}
 
 </x-app-layout>

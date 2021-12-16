@@ -17,7 +17,7 @@
                         @endif
                         <li>Name: {{ $commission->name }}</li>
                         <li>Difficulty: {{ $commission->difficulty }}</li>
-                        <li>Reward: {{ $commission->reward }} coins</li>
+                        <li>Reward: {{ $commission->reward }}</li>
                     </div>
                 </div>
             </ul>
