@@ -41,6 +41,7 @@ class CommissionController extends Controller
             'difficulty'=> 'required',
             'reward'=> 'required|numeric|max:45',
             'adventure_id'=> 'required',
+            'image'=>'nullable|mimes:jpg,png,jpeg|max:5048'
         ]);
 
         $tavern = Commission::create([

@@ -25,8 +25,8 @@
                                     <br>{{ $tavern->name }}
                                     <br>{{ $tavern->country }}
                                     <br>{{ $tavern->active }}
-                                    @if ($commission->image->image_path)
-                                        <img src={{ $commission->image->image_path }} alt="{{ $commission->name }} tavern">
+                                    @if ($commission->image)
+                                        <img src={{asset('images/' . $commission->image->image_path ) }} alt="{{ $commission->name }} tavern">
                                     @endif
                                 </a>
                             </li>

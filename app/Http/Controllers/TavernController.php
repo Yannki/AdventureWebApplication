@@ -39,6 +39,7 @@ class TavernController extends Controller
         $validateData = $request->validate([
             'name' => 'required',
             'country'=> 'nullable|string|max:45',
+            'image'=>'nullable|mimes:jpg,png,jpeg|max:5048',
         ]);
 
         $tavern = Tavern::create([
@@ -86,6 +87,7 @@ class TavernController extends Controller
         $validateData = $request->validate([
             'name' => 'required',
             'country'=> 'nullable|min:2|max:45',
+            'image'=>'nullable|mimes:jpg,png,jpeg|max:5048',
         ]);
 
         $tavern = Tavern::where('id', $id)->
