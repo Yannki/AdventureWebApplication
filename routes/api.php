@@ -18,6 +18,9 @@ use App\Http\Controllers\CommentController;
 Route::get('/commissions/{id}/comments', 
     [CommentController::class, 'apiIndex'])->name('api.comments.index');
 
+Route::post('/commissions/{id}/comments', 
+    [CommentController::class, 'apiStore'])->name('api.comments.store');
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

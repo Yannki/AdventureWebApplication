@@ -22,9 +22,18 @@ class CommentController extends Controller
 
     public function apiIndex($id)
     {
-    //    $commission = Commission::find($id);
        $comments = Comment::with('adventurer')->where('commission_id', $id)->get();
        return response()->json($comments);
+    }
+
+    public function apiStore(Request $request)
+    {
+       $comment = Comment::create([
+           'text'=> $request->input('text'),
+           'commission_id'=> $request->input('commission_id'),
+           'adventurer_id'=> $request->input('adventurer_id'),
+       ]);
+       return response()->json($comment);
     }
 
     /**

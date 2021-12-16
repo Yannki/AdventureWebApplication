@@ -30,23 +30,36 @@
             COMMENTS:
         </a>
     </div>
-    <div class="py-1">
-        <ul>  
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div id="comments">
+    <div id="comments">
+        <div class="py-1">
+            <ul>
+                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
                     <li v-for="comment in comments">
-                    <span class="inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-green-900 focus:outline-none focus:border-green-900 focus:ring ring-green-300 disabled:opacity-25 transition ease-in-out duration-150">
-                    Adventurer @{{comment.adventurer.name}}
-                    </span>
+                        <span
+                            class="inline-flex items-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-green-900 focus:outline-none focus:border-green-900 focus:ring ring-green-300 disabled:opacity-25 transition ease-in-out duration-150">
+                            Adventurer @{{ comment . adventurer . name }}
+                        </span>
                         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 bg-white border-b border-green-200">
                                 @{{ comment . text }}
                             </div>
                         </div>
                     </li>
+
                 </div>
+            </ul>
+        </div>
+
+        <div class="py-1">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <input type="text" class="w-full" v-model="newComment">
+                <button @click="createComment"
+                    class="inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-900 focus:outline-none focus:border-green-900 focus:ring ring-green-300 disabled:opacity-25 transition ease-in-out duration-150">
+                    submit
+                    <button>
             </div>
-        </ul>
+        </div>
     </div>
 
     <script>
@@ -54,7 +67,29 @@
             el: "#comments",
             data: {
                 comments: [],
+                newComment: '',
+                newCommentCommission: "{{ $commission->id }}",
+                newCommentAdventurer: "{{ Auth::user()->adventurer->id }}",
             },
+
+            methods: {
+                createComment: function() {
+                    axios.post("{{ route('api.comments.store', ['id' => $commission->id]) }}", {
+                            text: this.newComment,
+                            commission_id: this.newCommentCommission,
+                            adventurer_id: this.newCommentAdventurer,
+                        })
+                        .then(response => {
+                            this.comments.push(response.data);
+                            this.newComment = '';
+                            location.reload();
+                        })
+                        .catch(response => {
+                            console.log(response);
+                        })
+                },
+            },
+
             mounted() {
                 axios.get("{{ route('api.comments.index', ['id' => $commission->id]) }}")
                     .then(response => {

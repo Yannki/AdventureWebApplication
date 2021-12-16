@@ -16,4 +16,10 @@ class Comment extends Model
     public function commission(){
         return $this->belongsTo(Commission::class);
     }
+
+    protected $fillable = [
+        'text',
+        'commission_id',
+        'adventurer_id',
+    ];
 }
