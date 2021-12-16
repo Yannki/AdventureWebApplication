@@ -107,7 +107,7 @@ class CommissionController extends Controller
             'image'=>'required|mimes:jpg,png,jpeg|max:5048'
         ]);
 
-        $commission = Commission::update([
+        $commission = Commission::where('id',$id)->update([
             'name' => $request->input('name'),
             'difficulty'=> $request->input('difficulty'),
             'reward'=> $request->input('reward'),

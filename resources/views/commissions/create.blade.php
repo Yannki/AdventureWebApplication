@@ -16,9 +16,13 @@
                         </div>
 
                         <div class="mt-4">
-                            Difficulty:<br>
-                            <input type="text" name="difficulty"
-                                class="rounded-md shadow-sm border-green-300 focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50">
+                            <label>Difficulty:</label>
+                            <select name="difficulty" class ="rounded-md shadow-sm border-green-300 focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50">
+                                <option value="easy">Easy</option>
+                                <option value="medium">Medium</option>
+                                <option value="hard">Hard</option>
+                                <option value="expert">Expert</option>
+                            </select>
                         </div>
 
                         <div class="mt-4">
