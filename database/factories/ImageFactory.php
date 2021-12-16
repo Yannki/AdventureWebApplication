@@ -25,20 +25,20 @@ class ImageFactory extends Factory
     public function definition()
     { 
         $noteableType = $this->faker->randomElement([
-            'App\Tavern',
-            'App\Commission',
-            'App\Adventurer',
+            'App\Models\Tavern',
+            'App\Models\Commission',
+            'App\Models\Adventurer',
         ]);
 
-        if ($noteableType === 'App\Tavern') {
+        if ($noteableType === 'App\Models\Tavern') {
             $noteableId = Tavern::all()->random()->id;
-            $image = $this->faker->image('public/images',400,300, 'logo',true, true, 'Faker');
-        } else if ($noteableType === 'App\Commission') {
+            $image = $this->faker->image('public/images',400,300, 'logo',false);
+        } else if ($noteableType === 'App\Models\Commission') {
             $noteableId = Commission::all()->random()->id;
-            $image = $this->faker->image('public/images',400,300, 'monster',true, true, 'Faker');
+            $image = $this->faker->image('public/images',400,300, 'monster',false);
         } else {
             $noteableId = Adventurer::all()->random()->id;
-            $image = $this->faker->image('public/images',400,300, 'profile',true, true, 'Faker');
+            $image = $this->faker->image('public/images',400,300, 'profile',false);
         }
 
         

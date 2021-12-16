@@ -7,6 +7,9 @@
                     <li>Name: {{$tavern->name}}</li>
                     <li>Country: {{$tavern->country}}</li>
                     <li>Active: {{$tavern->active}}</li>
+                    @if($tavern->image)
+                    <img src={{asset("images/".$tavern->image->image_path)}} alt="{{$tavern->name}} tavern">
+                    @endif
                     </ul>
                 </div>
             </div>
