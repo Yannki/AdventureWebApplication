@@ -6,7 +6,7 @@
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-                    <form method="POST" action="/commissions" enctype='multipart/form-data'>
+                    <form method="POST" action="/commissions/{{ $commission->id }}" enctype='multipart/form-data'>
                         @csrf
                         @method('PUT')
                         <input type="hidden" name="adventurer_id" value={{ Auth::user()->adventurer->id }}>
@@ -35,7 +35,7 @@
 
                         <div class="flex items-center justify-end mt-4">
                             <x-button>
-                                {{ __('Create') }}
+                                {{ __('Update') }}
                             </x-button>
                         </div>
                     </form>

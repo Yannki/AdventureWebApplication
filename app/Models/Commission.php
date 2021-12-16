@@ -25,4 +25,12 @@ class Commission extends Model
     {
         return $this->morphOne(Image::class, 'imageable');
     }
+
+    protected $fillable = [
+        'name',
+        'difficulty',
+        'reward',
+        'adventurer_id',
+        'image',
+    ];
 }

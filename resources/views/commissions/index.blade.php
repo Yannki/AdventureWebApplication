@@ -18,6 +18,7 @@
                                             class="object-scale-down h-20 w-20" alt="{{ $commission->name }} tavern">
                                     </div>
                                 @endif
+                                
                                 <a href="/commissions/{{ $commission->id }}"
                                     class="hover:text-indigo-800 
                                    hover:text-underline text-right h-10 p-2 md:h-auto md:p-4">
@@ -26,6 +27,25 @@
                                     <br>{{ $commission->reward }}
                                 </a>
                             </li>
+                            
+                            <div class="flex float-right justify-self-center">
+                                    <form method="POST" action="/commissions/{{ $commission->id }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="text-red-600 hover:text-red-800 
+                                            hover:text-underline text-center h-10 p-2 md:h-auto md:p-4">
+                                            Delete
+                                        </button>
+                                    </form>
+
+                                    <a href="/commissions/{{ $commission->id }}/edit"
+                                        class="hover:text-indigo-800 
+                                    hover:text-underline text-center h-10 p-2 md:h-auto md:p-4">
+                                        Edit
+                                    </a>
+                                </div>
+
                             <div class="text-xs underline text-opacity-5">
                                 Posted by {{ $commission->adventurer->name }}
                             </div>

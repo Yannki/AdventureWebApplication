@@ -41,7 +41,7 @@ class CommissionController extends Controller
             'name' => 'required',
             'difficulty'=> 'required',
             'reward'=> 'required|numeric|max:45',
-            'adventure_id'=> 'required',
+            'adventurer_id'=> 'required',
             'image'=>'required|mimes:jpg,png,jpeg|max:5048'
         ]);
 
@@ -49,7 +49,7 @@ class CommissionController extends Controller
             'name' => $request->input('name'),
             'difficulty'=> $request->input('difficulty'),
             'reward'=> $request->input('reward'),
-            'adventure_id'=> $request->input('adventure_id'),
+            'adventurer_id'=> $request->input('adventurer_id'),
         ]);
 
         $newImageName = time() . $request->name . '.'
@@ -86,7 +86,8 @@ class CommissionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $commission = Commission::findOrFail($id);
+        return view('commissions.edit', ['commission' => $commission]);
     }
 
     /**
@@ -97,8 +98,34 @@ class CommissionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {      
+        $validateData = $request->validate([
+            'name' => 'required',
+            'difficulty'=> 'required',
+            'reward'=> 'required|numeric|max:45',
+            'adventurer_id'=> 'required',
+            'image'=>'required|mimes:jpg,png,jpeg|max:5048'
+        ]);
+
+        $commission = Commission::update([
+            'name' => $request->input('name'),
+            'difficulty'=> $request->input('difficulty'),
+            'reward'=> $request->input('reward'),
+            'adventurer_id'=> $request->input('adventurer_id'),
+        ]);
+
+        $newImageName = time() . $request->name . '.'
+        . $request->image->extension();
+
+        $request->image->move(public_path('images'),$newImageName);
+
+        $image = Image::create([
+            'image_path' =>$newImageName,
+            'imageable_id'=>$commission->id,
+            'imageable_type'=> 'App\Models\Commission',
+        ]);
+
+        return redirect('/commissions');
     }
 
     /**
