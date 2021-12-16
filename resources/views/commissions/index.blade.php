@@ -12,6 +12,12 @@
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 bg-white border-b border-green-200 hover:bg-green-50">
                             <li>
+                                @if ($commission->image)
+                                    <div class="flex float-right">
+                                        <img src={{ asset('images/' . $commission->image->image_path) }}
+                                            class="object-scale-down h-20 w-20" alt="{{ $commission->name }} tavern">
+                                    </div>
+                                @endif
                                 <a href="/commissions/{{ $commission->id }}"
                                     class="hover:text-indigo-800 
                                    hover:text-underline text-right h-10 p-2 md:h-auto md:p-4">
@@ -23,6 +29,7 @@
                             <div class="text-xs underline text-opacity-5">
                                 Posted by {{ $commission->adventurer->name }}
                             </div>
+
                         </div>
                     </div>
                 @endforeach

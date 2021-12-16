@@ -52,10 +52,10 @@ class CommissionController extends Controller
             'adventure_id'=> $request->input('adventure_id'),
         ]);
 
-        $newImageName = time() . $request-> . '.'
+        $newImageName = time() . $request->name . '.'
         . $request->image->extension();
 
-        $request->image->move(public_path('images',$newImageName));
+        $request->image->move(public_path('images'),$newImageName);
 
         $image = Image::create([
             'image_path' =>$newImageName,

@@ -49,10 +49,10 @@ class TavernController extends Controller
         ]);
 
       
-        $newImageName = time() . $request-> . '.'
+        $newImageName = time() . $request->name . '.'
         . $request->image->extension();
 
-        $request->image->move(public_path('images',$newImageName));
+        $request->image->move(public_path('images'),$newImageName);
 
         $image = Image::create([
             'image_path' =>$newImageName,
@@ -110,10 +110,10 @@ class TavernController extends Controller
             'country' => $request->input('country'),
         ]);
 
-        $newImageName = time() . $request-> . '.'
+        $newImageName = time() . $request->name . '.'
         . $request->image->extension();
 
-        $request->image->move(public_path('images',$newImageName));
+        $request->image->move(public_path('images'),$newImageName);
 
         $image = Image::create([
             'image_path' =>$newImageName,
