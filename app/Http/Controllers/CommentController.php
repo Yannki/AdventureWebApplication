@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Commission;
+use App\Models\Comment;
 
 class CommentController extends Controller
 {
@@ -21,8 +22,8 @@ class CommentController extends Controller
 
     public function apiIndex($id)
     {
-       $commission = Commission::find($id);
-       $comments = $commission->comments;
+    //    $commission = Commission::find($id);
+       $comments = Comment::with('adventurer')->where('commission_id', $id)->get();
        return response()->json($comments);
     }
 

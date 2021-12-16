@@ -31,10 +31,13 @@
         </a>
     </div>
     <div class="py-1">
-        <ul>
+        <ul>  
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div id="comments">
                     <li v-for="comment in comments">
+                    <span class="inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-green-900 focus:outline-none focus:border-green-900 focus:ring ring-green-300 disabled:opacity-25 transition ease-in-out duration-150">
+                    Adventurer @{{comment.adventurer.name}}
+                    </span>
                         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 bg-white border-b border-green-200">
                                 @{{ comment . text }}
