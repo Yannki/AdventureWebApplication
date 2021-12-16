@@ -5,7 +5,7 @@
         </h2>
     </x-slot> --}}
 
-    <div class="py-12">
+    {{-- <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-green-200">
@@ -13,10 +13,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     @if (Auth::user()->adventurer)
-        <div class="py-3">
+        <div class="py-10">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <ul>
                     <div
@@ -37,7 +37,7 @@
         </div>
 
 
-        <div class="py-12">
+        <div class="py-2">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <ul>
                     <div
@@ -45,19 +45,21 @@
                         YOUR CREATED COMMISSIONS:
                     </div>
                     @foreach (Auth::user()->adventurer->commissions as $commission)
-                        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                            <div class="p-6 bg-white border-b border-green-200 hover:bg-green-50">
-                                <li>
-                                    <a href="/taverns/{{ $commission->id }}"
-                                        class="hover:text-indigo-800 
+                        @if ($loop->index < 3)
+                            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                                <div class="p-6 bg-white border-b border-green-200 hover:bg-green-50">
+                                    <li>
+                                        <a href="/taverns/{{ $commission->id }}"
+                                            class="hover:text-indigo-800 
                                    hover:text-underline text-right h-10 p-2 md:h-auto md:p-4">
-                                        <br>Commission Name: {{ $commission->name }}
-                                        <br>Difficulty: {{ $commission->difficulty }}
-                                        <br>Reward: {{ $commission->reward }}
-                                    </a>
-                                </li>
+                                            <br>Commission Name: {{ $commission->name }}
+                                            <br>Difficulty: {{ $commission->difficulty }}
+                                            <br>Reward: {{ $commission->reward }}
+                                        </a>
+                                    </li>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     @endforeach
                 </ul>
             </div>
