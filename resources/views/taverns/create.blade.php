@@ -6,7 +6,7 @@
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-                    <form method="POST" action="/taverns">
+                    <form method="POST" action="/taverns" enctype='multipart/form-data'>
                         @csrf
                         <!-- Email Address -->
                         <div>

@@ -13,4 +13,10 @@ class Image extends Model
     {
         return $this->morphTo();
     }
+
+    protected $fillable = [
+        'image_path',
+        'imageable_id',
+        'imageable_type',
+    ]; 
 }

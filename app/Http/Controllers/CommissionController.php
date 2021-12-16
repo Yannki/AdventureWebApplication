@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Commission;
+use App\Models\Image;
 
 class CommissionController extends Controller
 {
@@ -41,14 +42,25 @@ class CommissionController extends Controller
             'difficulty'=> 'required',
             'reward'=> 'required|numeric|max:45',
             'adventure_id'=> 'required',
-            'image'=>'nullable|mimes:jpg,png,jpeg|max:5048'
+            'image'=>'required|mimes:jpg,png,jpeg|max:5048'
         ]);
 
-        $tavern = Commission::create([
+        $commission = Commission::create([
             'name' => $request->input('name'),
             'difficulty'=> $request->input('difficulty'),
             'reward'=> $request->input('reward'),
             'adventure_id'=> $request->input('adventure_id'),
+        ]);
+
+        $newImageName = time() . $request-> . '.'
+        . $request->image->extension();
+
+        $request->image->move(public_path('images',$newImageName));
+
+        $image = Image::create([
+            'image_path' =>$newImageName,
+            'imageable_id'=>$commission->id,
+            'imageable_type'=> 'App\Models\Commission',
         ]);
 
         return redirect('/commissions');

@@ -25,5 +25,6 @@ class Tavern extends Model
     protected $fillable = [
         'name',
         'country',
+        'image',
     ]; 
 }

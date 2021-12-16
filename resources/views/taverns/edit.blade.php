@@ -6,7 +6,7 @@
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-                    <form method="POST" action="/taverns/{{ $tavern->id }}">
+                    <form method="POST" action="/taverns/{{ $tavern->id }}" enctype='multipart/form-data'>
                         @csrf
                         @method('PUT')
                         <!-- Email Address -->

@@ -8,6 +8,7 @@
 
                     <form method="POST" action="/commissions" enctype='multipart/form-data'>
                         @csrf
+                        @method('PUT')
                         <input type="hidden" name="adventurer_id" value={{ Auth::user()->adventurer->id }}>
                         <div>
                             Commission Name:<br>

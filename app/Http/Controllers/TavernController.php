@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tavern;
+use App\Models\Image;
 
 class TavernController extends Controller
 {
@@ -39,13 +40,26 @@ class TavernController extends Controller
         $validateData = $request->validate([
             'name' => 'required',
             'country'=> 'nullable|string|max:45',
-            'image'=>'nullable|mimes:jpg,png,jpeg|max:5048',
+            'image'=>'required|mimes:jpg,png,jpeg|max:5048',
         ]);
 
         $tavern = Tavern::create([
             'name' => $request->input('name'),
-            'country' => $request->input('country')
+            'country' => $request->input('country'),
         ]);
+
+      
+        $newImageName = time() . $request-> . '.'
+        . $request->image->extension();
+
+        $request->image->move(public_path('images',$newImageName));
+
+        $image = Image::create([
+            'image_path' =>$newImageName,
+            'imageable_id'=>$tavern->id,
+            'imageable_type'=> 'App\Models\Tavern',
+        ]);
+        
 
         return redirect('/taverns');
     }
@@ -87,13 +101,24 @@ class TavernController extends Controller
         $validateData = $request->validate([
             'name' => 'required',
             'country'=> 'nullable|min:2|max:45',
-            'image'=>'nullable|mimes:jpg,png,jpeg|max:5048',
+            'image'=>'required|mimes:jpg,png,jpeg|max:5048',
         ]);
 
         $tavern = Tavern::where('id', $id)->
         update([
             'name' => $request->input('name'),
             'country' => $request->input('country'),
+        ]);
+
+        $newImageName = time() . $request-> . '.'
+        . $request->image->extension();
+
+        $request->image->move(public_path('images',$newImageName));
+
+        $image = Image::create([
+            'image_path' =>$newImageName,
+            'imageable_id'=>$tavern->id,
+            'imageable_type'=> 'App\Models\Tavern',
         ]);
 
         return redirect('/taverns');
