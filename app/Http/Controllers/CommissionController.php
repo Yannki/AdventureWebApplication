@@ -119,9 +119,9 @@ class CommissionController extends Controller
 
         $request->image->move(public_path('images'),$newImageName);
 
-        $image = Image::create([
+        $image = Image::where('imageable_id',$id)->update([
             'image_path' =>$newImageName,
-            'imageable_id'=>$commission->id,
+            'imageable_id'=>$id,
             'imageable_type'=> 'App\Models\Commission',
         ]);
 
