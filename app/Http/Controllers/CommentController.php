@@ -36,6 +36,17 @@ class CommentController extends Controller
        return response()->json($comment);
     }
 
+    public function apiEdit(Request $request)
+    {  
+        $comment = Comment::where('id',$request->input('comment_id'))->update([
+            'text'=> $request->input('text'),
+            'commission_id'=> $request->input('commission_id'),
+            'adventurer_id'=> $request->input('adventurer_id'),
+        ]);
+
+        return response()->json($comment);
+    }
+
     public function apiDestroy(Request $request)
     {  
         $comment = Comment::find($request->input('comment_id'));

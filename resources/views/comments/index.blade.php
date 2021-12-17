@@ -50,6 +50,17 @@
                                             hover:text-underline text-center h-10 p-2 md:h-auto md:p-4">
                             Delete
                         </button>
+                        <button @click="editComment(comment.id)" v-if="!isHidden"
+                            class="text-indigo-600 hover:text-indigo-800 
+                                            hover:text-underline text-center h-10 p-2 md:h-auto md:p-4">
+                            Edit
+                        </button>
+                        <button @click="showField" v-if="isHidden" v-bind:id="comment.id"
+                            class="text-indigo-600 hover:text-indigo-800 
+                                            hover:text-underline text-center h-10 p-2 md:h-auto md:p-4">
+                            Edit
+                        </button>
+                        <input type="text" class="w-full" v-bind:id="comment.id" v-if="!isHidden" v-model="editCommentPost">
                     </li>
 
                 </div>
@@ -68,16 +79,22 @@
     </div>
 
     <script>
+
         var app = new Vue({
             el: "#comments",
             data: {
                 comments: [],
                 newComment: '',
+                editCommentPost: '',
                 newCommentCommission: "{{ $commission->id }}",
                 newCommentAdventurer: "{{ Auth::user()->adventurer->id }}",
+                isHidden: true,
             },
 
             methods: {
+                showField: function() {
+                    this.isHidden = false;
+                },
                 createComment: function() {
                     axios.post("{{ route('api.comments.store', ['id' => $commission->id]) }}", {
                             text: this.newComment,
@@ -94,13 +111,30 @@
                         })
                 },
 
+                editComment: function(id) {
+                    axios.post("{{ route('api.comments.edit', ['id' => $commission->id]) }}", {
+                            comment_id: id,
+                            text: this.editCommentPost,
+                            commission_id: this.newCommentCommission,
+                            adventurer_id: this.newCommentAdventurer,
+                        })
+                        .then(response => {
+                            this.comments[id] = response.data;
+                            this.isHidden = true;
+                            location.reload();
+                        })
+                        .catch(response => {
+                            console.log(response);
+                        })
+                },
+
+
                 deleteComment: function(id) {
-                    axios.post("{{ route('api.comments.destroy', ['id' => $commission->id]) }}",{
-                        comment_id: id,
-                    })
+                    axios.post("{{ route('api.comments.destroy', ['id' => $commission->id]) }}", {
+                            comment_id: id,
+                        })
                         .then(response => {
                             this.comments.splice(this.comments.indexOf(id), 1);
-                            location.reload();
                         })
                         .catch(response => {
                             console.log(response);
