@@ -35,7 +35,7 @@
             <ul>
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-                    <li v-for="comment in comments">
+                    <li v-for="comment in comments" :key="comment.id">
                         <span
                             class="inline-flex items-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-green-900 focus:outline-none focus:border-green-900 focus:ring ring-green-300 disabled:opacity-25 transition ease-in-out duration-150">
                             Adventurer @{{ comment . adventurer . name }}
@@ -45,6 +45,11 @@
                                 @{{ comment . text }}
                             </div>
                         </div>
+                        <button @click="deleteComment(comment.id)"
+                            class="text-red-600 hover:text-red-800 
+                                            hover:text-underline text-center h-10 p-2 md:h-auto md:p-4">
+                            Delete
+                        </button>
                     </li>
 
                 </div>
@@ -82,6 +87,19 @@
                         .then(response => {
                             this.comments.push(response.data);
                             this.newComment = '';
+                            location.reload();
+                        })
+                        .catch(response => {
+                            console.log(response);
+                        })
+                },
+
+                deleteComment: function(id) {
+                    axios.post("{{ route('api.comments.destroy', ['id' => $commission->id]) }}",{
+                        comment_id: id,
+                    })
+                        .then(response => {
+                            this.comments.splice(this.comments.indexOf(id), 1);
                             location.reload();
                         })
                         .catch(response => {

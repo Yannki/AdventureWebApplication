@@ -21,6 +21,11 @@ Route::get('/commissions/{id}/comments',
 Route::post('/commissions/{id}/comments', 
     [CommentController::class, 'apiStore'])->name('api.comments.store');
 
+Route::post('/commissions/{id}/comments/delete', 
+    [CommentController::class, 'apiDestroy'])->name('api.comments.destroy');
+
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

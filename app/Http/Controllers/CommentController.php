@@ -36,6 +36,14 @@ class CommentController extends Controller
        return response()->json($comment);
     }
 
+    public function apiDestroy(Request $request)
+    {  
+        $comment = Comment::find($request->input('comment_id'));
+        $comment->delete();
+
+        return response()->json($comment);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
